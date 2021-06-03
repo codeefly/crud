@@ -1,7 +1,9 @@
+import AddTodo from "../components/AddTodo";
+
 export default function Home() {
     return (
         <>
-            <h1>Hello</h1>
+            <AddTodo />
         </>
     );
 }
