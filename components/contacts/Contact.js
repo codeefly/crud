@@ -1,5 +1,6 @@
 import React from "react";
 import Avatar from "react-avatar";
+import Link from 'next/link'
 
 const Contact = ({ abc }) => {
     const { id, name, phone, email } = abc;
@@ -21,7 +22,7 @@ const Contact = ({ abc }) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <i class="material-icons">edit</i>
+                    <Link href="/add-contact"><a><i class="material-icons">edit</i></a></Link>
                     <i class="material-icons">remove_circle</i>
                 </td>
             </tr>

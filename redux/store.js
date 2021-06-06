@@ -1,9 +1,17 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-// import rootReducer from "./reducers/rootReducer";
+
+// actions
+
+export const addContact = (contact) => {
+    return {
+        type: "CREATE_CONTACT",
+        payload: contact,
+    };
+};
 
 const initialState = {
-    contacts :[
+    contacts: [
         {
             id: 1,
             name: "Leanne Graham",
@@ -235,17 +243,48 @@ const initialState = {
             },
         },
     ],
-    counter:0,
-    name:"xyz"
-}
+    counter: 0,
+    name: "xyz",
+};
 
 const contactReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "CREATE_CONTACT":
+            return {
+                ...state,
+                contacts: [action.payload, ...state.contacts],
+            };
         default:
             return state;
     }
 };
 
-const store = createStore(contactReducer, composeWithDevTools());
+function saveToLocalStorage(state) {
+    try {
+        const serialisedState = JSON.stringify(state);
+        localStorage.setItem("persistantState", serialisedState);
+    } catch (e) {
+        console.warn(e);
+    }
+}
+
+function loadFromLocalStorage() {
+    try {
+        const serialisedState = localStorage.getItem("persistantState");
+        if (serialisedState === null) return undefined;
+        return JSON.parse(serialisedState);
+    } catch (e) {
+        console.warn(e);
+        return undefined;
+    }
+}
+
+const store = createStore(
+    contactReducer,
+    loadFromLocalStorage(),
+    composeWithDevTools()
+);
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 export default store;
