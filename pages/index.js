@@ -1,9 +1,9 @@
-import AddTodo from "../components/AddTodo";
+import Contacts from "../components/contacts/Contacts";
 
 export default function Home() {
     return (
         <>
-            <AddTodo />
+            <Contacts />
         </>
     );
 }
