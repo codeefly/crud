@@ -1,12 +1,12 @@
+import Link from 'next/link';
 import React from "react";
 import Avatar from "react-avatar";
-import Link from 'next/link'
 
 const Contact = ({ abc }) => {
-    const { id, name, phone, email } = abc;
+    const { name, phone, email } = abc;
     return (
         <>
-            <tr key={id}>
+            <tr>
                 <th>
                     <div className="custom-checkbox">
                         <input
@@ -22,8 +22,8 @@ const Contact = ({ abc }) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <Link href="/add-contact"><a><i class="material-icons">edit</i></a></Link>
-                    <i class="material-icons">remove_circle</i>
+                    <Link href="/add-contact"><a><i className="material-icons">edit</i></a></Link>
+                    <i className="material-icons">remove_circle</i>
                 </td>
             </tr>
         </>

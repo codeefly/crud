@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import shortid from "shortid";
-import { addContact } from "../redux/store";
+import { addContact } from "../redux/actions/actionCreator";
 
 const Addcontacts = () => {
     const router = useRouter();
