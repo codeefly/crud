@@ -1,8 +1,11 @@
-import Link from 'next/link';
+import Link from "next/link";
 import React from "react";
 import Avatar from "react-avatar";
+import { useDispatch } from "react-redux";
+import { deleteContact } from "../../redux/actions/actionCreator";
 
-const Contact = ({ abc }) => {
+const Contact = ({ abc, selectAll }) => {
+    const dispatch = useDispatch();
     const { name, phone, email, id } = abc;
     return (
         <>
@@ -10,6 +13,7 @@ const Contact = ({ abc }) => {
                 <th>
                     <div className="custom-checkbox">
                         <input
+                            checked={selectAll}
                             type="checkbox"
                             className="custom-control-input"
                         />
@@ -22,8 +26,14 @@ const Contact = ({ abc }) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <Link href={`/edit-contact/${id}`}><a><i className="material-icons">edit</i></a></Link>
-                    <i className="material-icons">remove_circle</i>
+                    <Link href={`/edit-contact/${id}`}>
+                        <a>
+                            <i className="material-icons">edit</i>
+                        </a>
+                    </Link>
+                    <span onClick={() => dispatch(deleteContact(id))}>
+                        <i className="material-icons">remove_circle</i>
+                    </span>
                 </td>
             </tr>
         </>
