@@ -3,7 +3,7 @@ import React from "react";
 import Avatar from "react-avatar";
 
 const Contact = ({ abc }) => {
-    const { name, phone, email } = abc;
+    const { name, phone, email, id } = abc;
     return (
         <>
             <tr>
@@ -22,7 +22,7 @@ const Contact = ({ abc }) => {
                 <td>{phone}</td>
                 <td>{email}</td>
                 <td>
-                    <Link href="/add-contact"><a><i className="material-icons">edit</i></a></Link>
+                    <Link href={`/edit-contact/${id}`}><a><i className="material-icons">edit</i></a></Link>
                     <i className="material-icons">remove_circle</i>
                 </td>
             </tr>

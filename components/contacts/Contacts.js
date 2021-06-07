@@ -1,13 +1,16 @@
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 import Contact from "./Contact";
-
 function Contacts() {
     const contacts = useSelector((state) => state.contact.contacts);
     console.log(contacts);
     return (
         <>
             <div className="container">
+                <Link href="/add-contact">
+                    <a className="btn btn-primary">Create</a>
+                </Link>
                 <table className="table">
                     <thead>
                         <tr>
